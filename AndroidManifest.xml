@@ -20,9 +20,14 @@
         
         <activity android:name=".bound.binder.BindingActivity"
         	android:label="Bound Binder">        
-        </activity>
-        
+        </activity>        
         <service android:enabled="true" android:name=".bound.binder.LocalService" />
+        
+        <activity android:name=".bound.messager.MessagerActivity"
+        	android:label="Bound Messager">        
+        </activity>        
+        <service android:enabled="true" android:name=".bound.messager.MessagerService" />
+        
     </application>
 
 

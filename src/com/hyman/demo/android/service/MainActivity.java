@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.hyman.demo.android.service.bound.binder.BindingActivity;
+import com.hyman.demo.android.service.bound.messager.MessagerActivity;
 import com.hyman.demo.android.service.player.audio.AudioPlayerActivity;
 
 public class MainActivity extends Activity {
@@ -29,6 +30,9 @@ public class MainActivity extends Activity {
 					MainActivity.this.startActivity(intent);
 				} else if ("bound binder".equals(value)) {
 					Intent intent = new Intent(MainActivity.this, BindingActivity.class);
+					MainActivity.this.startActivity(intent);
+				} else if ("bound messager".equals(value)) {
+					Intent intent = new Intent(MainActivity.this, MessagerActivity.class);
 					MainActivity.this.startActivity(intent);
 				}
 			}
