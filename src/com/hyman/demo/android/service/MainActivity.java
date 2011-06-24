@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.hyman.demo.android.service.bound.binder.BindingActivity;
 import com.hyman.demo.android.service.player.audio.AudioPlayerActivity;
 
 public class MainActivity extends Activity {
@@ -25,6 +26,9 @@ public class MainActivity extends Activity {
 				String value = spinner.getSelectedItem().toString();
 				if ("audio player".equals(value)) {
 					Intent intent = new Intent(MainActivity.this, AudioPlayerActivity.class);
+					MainActivity.this.startActivity(intent);
+				} else if ("bound binder".equals(value)) {
+					Intent intent = new Intent(MainActivity.this, BindingActivity.class);
 					MainActivity.this.startActivity(intent);
 				}
 			}

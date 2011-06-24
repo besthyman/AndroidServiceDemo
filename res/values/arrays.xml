@@ -1,4 +1,5 @@
 <resources><string-array name="activity_services">
 <item>audio player</item>
+<item>bound binder</item>
 </string-array>
 </resources>

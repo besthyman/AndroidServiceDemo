@@ -17,7 +17,12 @@
         </activity>
         
         <service android:enabled="true" android:name=".player.audio.AudioPlayerService" />
-
+        
+        <activity android:name=".bound.binder.BindingActivity"
+        	android:label="Bound Binder">        
+        </activity>
+        
+        <service android:enabled="true" android:name=".bound.binder.LocalService" />
     </application>
 
 
