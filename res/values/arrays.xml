@@ -2,5 +2,6 @@
 <item>audio player</item>
 <item>bound binder</item>
 <item>bound messager</item>
+<item>unbound intent</item>
 </string-array>
 </resources>

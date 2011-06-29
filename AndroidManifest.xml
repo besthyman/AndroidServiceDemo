@@ -33,6 +33,11 @@
 		        <action android:name="com.hyman.demo.android.service.bound.aidl.ACTION_REMOTE"/>
 		    </intent-filter>
         </service>
+        
+        <activity android:name=".unbound.intent.IntentServiceActivity"
+        	android:label="IntentServiceActivity">        
+        </activity>        
+        <service android:enabled="true" android:name=".unbound.intent.SimpleIntentService" />
     </application>
 
 

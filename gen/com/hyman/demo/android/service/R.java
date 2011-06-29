@@ -29,6 +29,7 @@ public final class R {
         public static final int bound_messager=0x7f030001;
         public static final int main=0x7f030002;
         public static final int player_audio=0x7f030003;
+        public static final int unbound_intent=0x7f030004;
     }
     public static final class raw {
         public static final int braincandy=0x7f040000;
