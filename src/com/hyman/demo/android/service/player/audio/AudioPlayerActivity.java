@@ -12,7 +12,7 @@ import com.hyman.demo.android.service.R;
 
 public class AudioPlayerActivity extends Activity implements OnClickListener {
 	private static final String TAG = "AudioPlayerActivity";
-	Button buttonStart, buttonStop;
+	private Button buttonStart, buttonStop;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

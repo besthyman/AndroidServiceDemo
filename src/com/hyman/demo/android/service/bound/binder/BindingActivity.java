@@ -17,9 +17,9 @@ import com.hyman.demo.android.service.R;
 import com.hyman.demo.android.service.bound.binder.LocalService.LocalBinder;
 
 public class BindingActivity extends Activity implements OnClickListener {
-	LocalService mService;
-    boolean mBound = false;
-    String TAG = "BindingActivity";
+	private LocalService mService;
+    private boolean mBound = false;
+    private static final String TAG = "BindingActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

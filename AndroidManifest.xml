@@ -28,6 +28,11 @@
         </activity>        
         <service android:enabled="true" android:name=".bound.messager.MessagerService" />
         
+        <service android:enabled="true" android:name=".bound.aidl.RemoteService" >
+	        <intent-filter>
+		        <action android:name="com.hyman.demo.android.service.bound.aidl.ACTION_REMOTE"/>
+		    </intent-filter>
+        </service>
     </application>
 
 

@@ -1,0 +1,4 @@
+<resources><string-array name="activity_services">
+<item>bound aidl client</item>
+</string-array>
+</resources>

@@ -11,7 +11,7 @@ import com.hyman.demo.android.service.R;
 
 public class AudioPlayerService extends Service {
 	private static final String TAG = "MyService";
-	MediaPlayer player;
+	private MediaPlayer player;
 
 	@Override
 	public IBinder onBind(Intent intent) {

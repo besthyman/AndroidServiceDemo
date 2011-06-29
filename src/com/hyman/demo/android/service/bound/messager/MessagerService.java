@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MessagerService extends Service {
 	private static final String TAG = "LocalService";
 	/** Command to the service to display a message */
-	static final int MSG_SAY_HELLO = 1;
+	public static final int MSG_SAY_HELLO = 1;
 
 	/**
 	 * Handler of incoming messages from clients.

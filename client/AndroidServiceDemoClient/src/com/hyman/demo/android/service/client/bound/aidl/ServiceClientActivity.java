@@ -1,4 +1,4 @@
-package com.hyman.demo.android.service.bound.messager;
+package com.hyman.demo.android.service.client.bound.aidl;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -7,29 +7,27 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.hyman.demo.android.service.R;
+import com.hyman.demo.android.service.bound.aidl.IRemoteService;
+import com.hyman.demo.android.service.client.R;
 
-public class MessagerActivity extends Activity implements OnClickListener {
-	/** Messenger for communicating with the service. */
-    private Messenger mService = null;
+public class ServiceClientActivity extends Activity implements OnClickListener{
+	private IRemoteService mIRemoteService;
 
     /** Flag indicating whether we have called bind on the service. */
     private boolean mBound;
 
-    private static final String TAG = "MessagerActivity";
+    private static final String TAG = "ServiceClientActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bound_messager);
+        setContentView(R.layout.bound_aidl_client);
         Button startButton = (Button) this.findViewById(R.id.buttonStart);
         startButton.setOnClickListener(this);
         Button stopButton = (Button) this.findViewById(R.id.buttonStop);
@@ -44,12 +42,9 @@ public class MessagerActivity extends Activity implements OnClickListener {
         @Override
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
-        	// This is called when the connection with the service has been
-            // established, giving us the object we can use to
-            // interact with the service.  We are communicating with the
-            // service using a Messenger, so here we get a client-side
-            // representation of that from the raw IBinder object.
-            mService = new Messenger(service);
+        	// Following the example above for an AIDL interface,
+            // this gets an instance of the IRemoteInterface, which we can use to call on the service
+            mIRemoteService = IRemoteService.Stub.asInterface(service);
             mBound = true;
 
 			Log.d(TAG, "onServiceConnected");
@@ -57,9 +52,8 @@ public class MessagerActivity extends Activity implements OnClickListener {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
-        	// This is called when the connection with the service has been
-            // unexpectedly disconnected -- that is, its process crashed.
-            mService = null;
+        	Log.e(TAG, "Service has unexpectedly disconnected");
+            mIRemoteService = null;
             mBound = false;
 			Log.d(TAG, "onServiceDisconnected");
         }
@@ -70,13 +64,15 @@ public class MessagerActivity extends Activity implements OnClickListener {
 	public void onClick(View src) {
 		switch (src.getId()) {
 		case R.id.buttonStart:
-			Log.d(TAG, "onClick: starting srvice");
+			Log.d(TAG, "onClick: buttonStart");
 			// Bind to the service
-	        bindService(new Intent(this, MessagerService.class), mConnection,
+			Intent intent = new Intent();
+			intent.setAction("com.hyman.demo.android.service.bound.aidl.ACTION_REMOTE");
+	        bindService(intent, mConnection,
 	            Context.BIND_AUTO_CREATE);
 			break;
 		case R.id.buttonStop:
-			Log.d(TAG, "onClick: stopping srvice");
+			Log.d(TAG, "onClick: buttonStop");
 			// Unbind from the service
 	        if (mBound) {
 	            unbindService(mConnection);
@@ -84,19 +80,19 @@ public class MessagerActivity extends Activity implements OnClickListener {
 	        }
 			break;
 		case R.id.buttonSend:
-			Log.d(TAG, "onClick: Send");
+			Log.d(TAG, "onClick: buttonSend");
 	        if (mBound) {
-				Log.d(TAG, "sayHello");
-		        // Create and send a message to the service, using a supported 'what' value
-		        Message msg = Message.obtain(null, MessagerService.MSG_SAY_HELLO, 0, 0);
-		        try {
-		            mService.send(msg);
-		        } catch (RemoteException e) {
-		            e.printStackTrace();
-		        }
+				Log.d(TAG, "call remote service");
+				int pid = -1;
+				try {
+					pid = mIRemoteService.getPid();
+				} catch (RemoteException e) {
+					e.printStackTrace();
+					Log.d(TAG, "RemoteException");
+				}
+				Log.d(TAG, "pid:" + pid);
 	        }
 			break;
 		}
 	}
-
 }
