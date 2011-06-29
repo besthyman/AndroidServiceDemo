@@ -3,5 +3,6 @@
 <item>bound binder</item>
 <item>bound messager</item>
 <item>unbound intent</item>
+<item>unbound general</item>
 </string-array>
 </resources>

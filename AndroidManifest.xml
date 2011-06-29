@@ -38,7 +38,10 @@
         	android:label="IntentServiceActivity">        
         </activity>        
         <service android:enabled="true" android:name=".unbound.intent.SimpleIntentService" />
+        
+        <activity android:name=".unbound.general.GeneralUnboundActivity"
+        	android:label="GeneralUnboundActivity">        
+        </activity>        
+        <service android:enabled="true" android:name=".unbound.general.GeneralUnboundService" />
     </application>
-
-
 </manifest> 

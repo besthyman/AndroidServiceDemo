@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import com.hyman.demo.android.service.bound.binder.BindingActivity;
 import com.hyman.demo.android.service.bound.messager.MessagerActivity;
 import com.hyman.demo.android.service.player.audio.AudioPlayerActivity;
+import com.hyman.demo.android.service.unbound.general.GeneralUnboundActivity;
 import com.hyman.demo.android.service.unbound.intent.IntentServiceActivity;
 
 public class MainActivity extends Activity {
@@ -37,6 +38,9 @@ public class MainActivity extends Activity {
 					MainActivity.this.startActivity(intent);
 				} else if ("unbound intent".equals(value)) {
 					Intent intent = new Intent(MainActivity.this, IntentServiceActivity.class);
+					MainActivity.this.startActivity(intent);
+				} else if ("unbound general".equals(value)) {
+					Intent intent = new Intent(MainActivity.this, GeneralUnboundActivity.class);
 					MainActivity.this.startActivity(intent);
 				}
 			}
